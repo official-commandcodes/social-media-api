@@ -37,3 +37,21 @@ To install the Project, follow these steps:
         - `404 Not Found`: Requested resource does not exist
 
         For more detailed examples of API responses and request formats, explore each endpoint below.
+
+## Data Validation
+
+Making use of [Joi](https://joi.dev/) for data sanitation
+
+##### Register
+
+```js
+function validationRegisterUser(data) {
+  const schema = Joi.object({
+    username: Joi.string().trim().min(3).max(255).required(),
+    email: Joi.string().trim().email().required(),
+    password: Joi.string().trim().min(6).required(),
+  });
+
+  return schema.validate(data);
+}
+```
