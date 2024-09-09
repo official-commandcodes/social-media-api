@@ -19,4 +19,13 @@ function validationLoginUser(data) {
   return schema.validate(data);
 }
 
-module.exports = { validationRegisterUser, validationLoginUser };
+function validateResetPassword(data) {
+  const schema = Joi.object({
+    newPassword: Joi.string().trim().min(6).required(),
+    previousPassword: Joi.string().trim().required(),
+  });
+
+  return schema.validate(data);
+}
+
+module.exports = { validationRegisterUser, validationLoginUser, validateResetPassword };

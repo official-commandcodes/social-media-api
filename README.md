@@ -42,7 +42,7 @@ To install the Project, follow these steps:
 
 Making use of [Joi](https://joi.dev/) for data sanitation
 
-##### Register
+##### Register with Joi
 
 ```js
 function validationRegisterUser(data) {

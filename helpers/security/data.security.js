@@ -49,6 +49,31 @@ class DataSecurity {
       throw error;
     }
   }
+
+  /**
+   * @param {string} userId - user id to create jwt token
+   * @returns {Object} - return { id: number, iat: timestamp, exp: timestamp }
+   */
+  static async verifyJWTToken(token) {
+    try {
+      return await jwt.verify(token, process.env.JWT_SECRET);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Generate Password Reset Token
+  static async generatePasswordResetToken() {
+    try {
+      const resetToken = crypto.randomBytes(32).toString("hex");
+      const digestedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+
+      const hashedToken = await this.hash(digestedToken);
+      return { digestedToken, hashedToken };
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = DataSecurity;
