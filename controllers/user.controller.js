@@ -46,15 +46,10 @@ const registerController = async (req, res) => {
     // generate JWT token
     const token = await DataSecurity.generateJWTToken(newUser.manualId); // create token with the manualId(uuid)
 
-    // Get pure & clean user object
-    const getNewUser = await UserModel.findOne({ manualId: newUser.manualId }).lean();
-
     // Response
     res.status(Status.CREATED).cookie("commandcodes.social-api-token", token, cookieInfo).json({
       satus: "success",
       token,
-      statusCode: Status.CREATED,
-      data: getNewUser,
     });
   } catch (error) {
     return res.status(500).json({

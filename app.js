@@ -11,7 +11,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 
-// setup swagger docs
+// setup swagger docsn
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // connect to Mongodb database

@@ -6,13 +6,13 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Commandcodes Social Media API",
+      title: "Social Media API",
       version: "1.0.0",
       description: "API documentation",
     },
     servers: [
       {
-        url: "http://localhost:8080",
+        url: process.env.NODE_ENV === "production" ? "https://social-media-api-497w.onrender.com/" : "http://localhost:8080",
       },
     ],
   },
